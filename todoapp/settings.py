@@ -25,10 +25,26 @@ SECRET_KEY = 'django-insecure-5dctrsa+6q+1ytma8r^v34ezyfb!xe@&4eh$^h#@j+*rl0e_ye
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+AUTH_USER_MODEL= 'profiles.Profile'
+
 ALLOWED_HOSTS = []
 
 
 # Application definition
+
+REST_FRAMEWORK = {
+    # Use Django's standard django.contrib.auth permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated'
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 5
+}
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -40,6 +56,7 @@ INSTALLED_APPS = [
     'rest_framework', 
     'rest_framework.authtoken',
     'tasks',
+    'profiles',
 ]
 
 MIDDLEWARE = [

@@ -1,5 +1,7 @@
 from django.db import models
 from django.conf import settings
+from profiles.models import Profile
+
 
 class Task(models.Model):
     name = models.CharField(max_length=200)
