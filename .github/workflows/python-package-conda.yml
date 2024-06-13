@@ -1,8 +1,8 @@
 name: Django CI
 
 on:
-  push:
-    branches: ["main"]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -27,4 +27,5 @@ jobs:
           pip install -r requirements/ci.txt
       - name: Run Tests
         run: |
-          python manage.py test -- settings=todoapp.settings.ci
+          python manage.py test --settings=todoapp.settings.ci
+
